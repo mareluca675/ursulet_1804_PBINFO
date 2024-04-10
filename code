@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+typedef unsigned int ust;
+typedef short sr;
+
+ifstream fin("ursulet.in");
+ofstream fout("ursulet.out");
+
+vector<int> A;
+
+int main()
+{
+    ust n;
+    fin >> n;
+
+    A.resize(n);
+    for(auto& num : A){
+        fin >> num;
+    }
+
+    ll sum = 0, sumMax = -1001;
+    ust start = 0, stMax, drMax;
+
+    for(ust i = 0; i < n; ++ i){
+        if(sum < 0){
+            sum = 0;
+            start = i;
+        }
+
+        sum += A[i];
+        if(sum > sumMax){
+            sumMax = sum;
+            stMax = start;
+            drMax = i;
+        }
+    }
+
+    fout << sumMax << '\n' << ++ stMax << ' ' << ++ drMax;
+
+    return 0;
+}
